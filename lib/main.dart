@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
+  final Color bgColor = Color(0xff0A0D22);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        primaryColor: bgColor,
+        scaffoldBackgroundColor: bgColor,
+      ),
       home: InputPage(),
     );
   }
