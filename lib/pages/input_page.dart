@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -25,11 +26,11 @@ class _InputPageState extends State<InputPage> {
             children: [
               ExpandedCard(
                 bgColor: activeCardColor,
-                child: buildGenderButton(Icons.male, "Male"),
+                child: buildGenderButton(FontAwesomeIcons.mars, "Male"),
               ),
               ExpandedCard(
                 bgColor: activeCardColor,
-                child: buildGenderButton(Icons.female, "Female"),
+                child: buildGenderButton(FontAwesomeIcons.venus, "Female"),
               ),
             ],
           )),
