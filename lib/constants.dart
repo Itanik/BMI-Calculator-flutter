@@ -9,6 +9,8 @@ const kLabelTextStyle = TextStyle(
 const kNumberTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 50.0,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w900,
 );
 const kMainTextColor = Color(0xFF8D8E98);
+const kAccentColor = Color(0xFFEB1555);
+const kAccentTransparentColor = Color(0x29EB1555);

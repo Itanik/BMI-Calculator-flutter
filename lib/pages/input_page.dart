@@ -1,5 +1,6 @@
+import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/pages/cards/counter_card.dart';
-import 'package:bmi_calculator_flutter/pages/cards/spinner_card.dart';
+import 'package:bmi_calculator_flutter/pages/cards/slider_card.dart';
 import 'package:flutter/material.dart';
 
 import 'cards/expanded_card.dart';
@@ -7,7 +8,6 @@ import 'cards/gender_card.dart';
 
 const _kActiveCardColor = Color(0xFF1D1E33);
 const _kInactiveCardColor = Color(0xFF111428);
-const _kBottomContainerColor = Color(0xFFEB1555);
 const _kBottomContainerHeight = 80.0;
 
 class InputPage extends StatefulWidget {
@@ -63,7 +63,7 @@ class _InputPageState extends State<InputPage> {
               ],
             )),
             ExpandedCard(
-              child: SpinnerCard(),
+              child: SliderCard(),
               bgColor: _kInactiveCardColor,
             ),
             Expanded(
@@ -83,7 +83,7 @@ class _InputPageState extends State<InputPage> {
             Container(
               margin: EdgeInsets.only(top: 10.0),
               height: _kBottomContainerHeight,
-              color: _kBottomContainerColor,
+              color: kAccentColor,
               alignment: Alignment.center,
               child: Text("Calculate from BMI"),
             )
