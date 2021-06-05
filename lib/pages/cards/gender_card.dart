@@ -23,6 +23,7 @@ class GenderCard extends StatelessWidget {
       genderText = "FEMALE";
     }
     return Column(
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -36,7 +37,7 @@ class GenderCard extends StatelessWidget {
         Center(
           child: Text(
             genderText,
-            style: TextStyle(fontSize: 18.0, color: unselectedTextColor),
+            style: TextStyle(fontSize: 18.0, color: mainTextColor),
           ),
         )
       ],

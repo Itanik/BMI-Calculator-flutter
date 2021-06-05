@@ -9,10 +9,9 @@ class CounterCard extends StatefulWidget {
 
   @override
   _CounterCardState createState() {
-    if (type == CounterType.WEIGHT)
-      return _CounterCardState(74, "WEIGHT");
-    else
-      return _CounterCardState(19, "AGE");
+    return type == CounterType.WEIGHT
+        ? _CounterCardState(74, "WEIGHT")
+        : _CounterCardState(19, "AGE");
   }
 }
 
