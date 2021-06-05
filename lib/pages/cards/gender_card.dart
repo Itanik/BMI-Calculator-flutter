@@ -8,39 +8,39 @@ enum Gender { MALE, FEMALE }
 
 class GenderCard extends StatelessWidget {
   final Gender gender;
+  final VoidCallback onCardClick;
 
-  GenderCard({required this.gender});
+  GenderCard({required this.gender, required this.onCardClick});
 
   @override
   Widget build(BuildContext context) {
-    final IconData genderIcon;
-    final String genderText;
-    if (gender == Gender.MALE) {
-      genderIcon = FontAwesomeIcons.mars;
-      genderText = "MALE";
-    } else {
-      genderIcon = FontAwesomeIcons.venus;
-      genderText = "FEMALE";
-    }
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          genderIcon,
-          size: genderIconSize,
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        Center(
-          child: Text(
-            genderText,
-            style: TextStyle(fontSize: 18.0, color: mainTextColor),
+    return GestureDetector(
+      // for transparent child such as Container we must provide
+      // special behavior property. otherwise touch won't be detected
+      behavior: HitTestBehavior.translucent,
+      onTap: onCardClick,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            gender == Gender.MALE
+                ? FontAwesomeIcons.mars
+                : FontAwesomeIcons.venus,
+            size: genderIconSize,
           ),
-        )
-      ],
+          SizedBox(
+            height: 15.0,
+          ),
+          Center(
+            child: Text(
+              gender == Gender.MALE ? "MALE" : "FEMALE",
+              style: labelTextStyle,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

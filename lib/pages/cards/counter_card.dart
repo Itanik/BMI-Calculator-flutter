@@ -1,3 +1,4 @@
+import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
 enum CounterType { WEIGHT, AGE }
@@ -26,8 +27,14 @@ class _CounterCardState extends State<CounterCard> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(headlineText),
-        Text(counterValue.toString()),
+        Text(
+          headlineText,
+          style: labelTextStyle,
+        ),
+        Text(
+          counterValue.toString(),
+          style: numberTextStyle,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

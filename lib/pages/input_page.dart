@@ -19,70 +19,75 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveCardColor;
   Color femaleCardColor = inactiveCardColor;
 
+  Gender? selectedGender;
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-              child: Row(
-            children: [
-              ExpandedCard(
-                bgColor: maleCardColor,
-                child: GestureDetector(
-                  // for transparent child such as Container we must provide
-                  // special behavior property. otherwise touch won't be detected
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    setState(() {
-                      maleCardColor = activeCardColor;
-                      femaleCardColor = inactiveCardColor;
-                    });
-                  },
-                  child: GenderCard(gender: Gender.MALE),
-                ),
-              ),
-              ExpandedCard(
-                bgColor: femaleCardColor,
-                child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
+  Widget build(BuildContext context) {
+    // updateGenderCardsColor();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('BMI CALCULATOR'),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+                child: Row(
+              children: [
+                ExpandedCard(
+                  bgColor: selectedGender == Gender.MALE
+                      ? activeCardColor
+                      : inactiveCardColor,
+                  child: GenderCard(
+                    gender: Gender.MALE,
+                    onCardClick: () {
                       setState(() {
-                        maleCardColor = inactiveCardColor;
-                        femaleCardColor = activeCardColor;
+                        selectedGender = Gender.MALE;
                       });
                     },
-                    child: GenderCard(gender: Gender.FEMALE)),
-              ),
-            ],
-          )),
-          ExpandedCard(
-            child: SpinnerCard(),
-            bgColor: inactiveCardColor,
-          ),
-          Expanded(
-              child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ExpandedCard(
-                child: CounterCard(type: CounterType.WEIGHT),
-                bgColor: inactiveCardColor,
-              ),
-              ExpandedCard(
-                child: CounterCard(type: CounterType.AGE),
-                bgColor: inactiveCardColor,
-              ),
-            ],
-          )),
-          Container(
-            margin: EdgeInsets.only(top: 10.0),
-            height: bottomContainerHeight,
-            color: bottomContainerColor,
-            child: Text("LOL"),
-          )
-        ],
-      ));
+                  ),
+                ),
+                ExpandedCard(
+                  bgColor: selectedGender == Gender.FEMALE
+                      ? activeCardColor
+                      : inactiveCardColor,
+                  child: GenderCard(
+                    gender: Gender.FEMALE,
+                    onCardClick: () {
+                      setState(() {
+                        selectedGender = Gender.FEMALE;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            )),
+            ExpandedCard(
+              child: SpinnerCard(),
+              bgColor: inactiveCardColor,
+            ),
+            Expanded(
+                child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ExpandedCard(
+                  child: CounterCard(type: CounterType.WEIGHT),
+                  bgColor: inactiveCardColor,
+                ),
+                ExpandedCard(
+                  child: CounterCard(type: CounterType.AGE),
+                  bgColor: inactiveCardColor,
+                ),
+              ],
+            )),
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              height: bottomContainerHeight,
+              color: bottomContainerColor,
+              alignment: Alignment.center,
+              child: Text("Calculate from BMI"),
+            )
+          ],
+        ));
+  }
 }
