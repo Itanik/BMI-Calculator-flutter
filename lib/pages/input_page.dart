@@ -1,7 +1,10 @@
 import 'package:bmi_calculator_flutter/constants.dart';
+import 'package:bmi_calculator_flutter/pages/cards/counter_card.dart';
+import 'package:bmi_calculator_flutter/pages/cards/spinner_card.dart';
 import 'package:flutter/material.dart';
 
-import 'cards/GenderCard.dart';
+import 'cards/expanded_card.dart';
+import 'cards/gender_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -31,7 +34,7 @@ class _InputPageState extends State<InputPage> {
             ],
           )),
           ExpandedCard(
-            child: buildHeightSpinner(),
+            child: SpinnerCard(),
             bgColor: inactiveCardColor,
           ),
           Expanded(
@@ -39,11 +42,11 @@ class _InputPageState extends State<InputPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ExpandedCard(
-                child: buildCounterCard("Weight"),
+                child: CounterCard(type: CounterType.WEIGHT),
                 bgColor: inactiveCardColor,
               ),
               ExpandedCard(
-                child: buildCounterCard("Age"),
+                child: CounterCard(type: CounterType.AGE),
                 bgColor: inactiveCardColor,
               ),
             ],
@@ -56,54 +59,4 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ));
-
-  Widget buildHeightSpinner() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Height"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("183"),
-              Text("cm"),
-            ],
-          ),
-          Text("spinner"),
-        ],
-      );
-
-  Widget buildCounterCard(String text) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(text),
-          Text("73"),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.remove),
-              Icon(Icons.add),
-            ],
-          )
-        ],
-      );
-}
-
-class ExpandedCard extends StatelessWidget {
-  final Color bgColor;
-  final Widget child;
-
-  ExpandedCard({required this.bgColor, required this.child});
-
-  @override
-  Widget build(BuildContext context) => Expanded(
-        child: Container(
-          child: child,
-          margin: EdgeInsets.all(12.0),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          ),
-        ),
-      );
 }
