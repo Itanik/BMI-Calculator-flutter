@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'cards/expanded_card.dart';
 import 'cards/gender_card.dart';
 
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const bottomContainerColor = Color(0xFFEB1555);
-const inactiveCardColor = Color(0xFF111428);
+const _kActiveCardColor = Color(0xFF1D1E33);
+const _kInactiveCardColor = Color(0xFF111428);
+const _kBottomContainerColor = Color(0xFFEB1555);
+const _kBottomContainerHeight = 80.0;
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,8 +16,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
+  Color maleCardColor = _kInactiveCardColor;
+  Color femaleCardColor = _kInactiveCardColor;
 
   Gender? selectedGender;
 
@@ -36,8 +36,8 @@ class _InputPageState extends State<InputPage> {
               children: [
                 ExpandedCard(
                   bgColor: selectedGender == Gender.MALE
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? _kActiveCardColor
+                      : _kInactiveCardColor,
                   child: GenderCard(
                     gender: Gender.MALE,
                     onCardClick: () {
@@ -49,8 +49,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 ExpandedCard(
                   bgColor: selectedGender == Gender.FEMALE
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? _kActiveCardColor
+                      : _kInactiveCardColor,
                   child: GenderCard(
                     gender: Gender.FEMALE,
                     onCardClick: () {
@@ -64,7 +64,7 @@ class _InputPageState extends State<InputPage> {
             )),
             ExpandedCard(
               child: SpinnerCard(),
-              bgColor: inactiveCardColor,
+              bgColor: _kInactiveCardColor,
             ),
             Expanded(
                 child: Row(
@@ -72,18 +72,18 @@ class _InputPageState extends State<InputPage> {
               children: [
                 ExpandedCard(
                   child: CounterCard(type: CounterType.WEIGHT),
-                  bgColor: inactiveCardColor,
+                  bgColor: _kInactiveCardColor,
                 ),
                 ExpandedCard(
                   child: CounterCard(type: CounterType.AGE),
-                  bgColor: inactiveCardColor,
+                  bgColor: _kInactiveCardColor,
                 ),
               ],
             )),
             Container(
               margin: EdgeInsets.only(top: 10.0),
-              height: bottomContainerHeight,
-              color: bottomContainerColor,
+              height: _kBottomContainerHeight,
+              color: _kBottomContainerColor,
               alignment: Alignment.center,
               child: Text("Calculate from BMI"),
             )

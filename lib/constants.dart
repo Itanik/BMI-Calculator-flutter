@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-const labelTextStyle = TextStyle(
-  color: mainTextColor,
+const kLabelTextStyle = TextStyle(
+  color: kMainTextColor,
   fontSize: 18.0,
 );
-const numberTextStyle = TextStyle(
+const kNumberTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 50.0,
   fontWeight: FontWeight.bold,
 );
-const mainTextColor = Color(0xFF8D8E98);
+const kMainTextColor = Color(0xFF8D8E98);

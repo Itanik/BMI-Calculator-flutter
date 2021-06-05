@@ -15,18 +15,18 @@ class _SpinnerCardState extends State<SpinnerCard> {
       children: [
         Text(
           "HEIGHT",
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "183",
-              style: numberTextStyle,
+              style: kNumberTextStyle,
             ),
             Text(
               " cm",
-              style: labelTextStyle,
+              style: kLabelTextStyle,
             ),
           ],
         ),

@@ -29,11 +29,11 @@ class _CounterCardState extends State<CounterCard> {
       children: [
         Text(
           headlineText,
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         ),
         Text(
           counterValue.toString(),
-          style: numberTextStyle,
+          style: kNumberTextStyle,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
