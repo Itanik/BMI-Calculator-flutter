@@ -1,6 +1,7 @@
 import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/pages/cards/counter_card.dart';
 import 'package:bmi_calculator_flutter/pages/cards/slider_card.dart';
+import 'package:bmi_calculator_flutter/pages/results_page.dart';
 import 'package:flutter/material.dart';
 
 import 'cards/expanded_card.dart';
@@ -80,12 +81,21 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             )),
-            Container(
-              margin: EdgeInsets.only(top: 10.0),
-              height: _kBottomContainerHeight,
-              color: kAccentColor,
-              alignment: Alignment.center,
-              child: Text("Calculate from BMI"),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => ResultsPage()));
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 10.0),
+                height: _kBottomContainerHeight,
+                color: kAccentColor,
+                alignment: Alignment.center,
+                child: Text(
+                  "CALCULATE FROM BMI",
+                  style: TextStyle(fontSize: 18.0),
+                ),
+              ),
             )
           ],
         ));
