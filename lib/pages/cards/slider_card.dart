@@ -41,7 +41,7 @@ class _SliderCardState extends State<SliderCard> {
             trackHeight: 2.0,
             overlayColor: kAccentTransparentColor,
             activeTrackColor: Colors.white,
-            inactiveTrackColor: kMainTextColor,
+            inactiveTrackColor: kLabelTextColor,
             thumbColor: kAccentColor,
           ),
           child: Slider(
