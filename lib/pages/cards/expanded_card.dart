@@ -13,7 +13,7 @@ class ExpandedCard extends StatelessWidget {
           margin: EdgeInsets.all(12.0),
           decoration: BoxDecoration(
             color: bgColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),
         ),
       );
