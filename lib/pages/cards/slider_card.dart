@@ -2,6 +2,10 @@ import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
 class SliderCard extends StatefulWidget {
+  final Function onChanged;
+
+  SliderCard({required this.onChanged});
+
   @override
   _SliderCardState createState() => _SliderCardState();
 }
@@ -11,6 +15,7 @@ class _SliderCardState extends State<SliderCard> {
 
   @override
   Widget build(BuildContext context) {
+    widget.onChanged(_heightValue.toInt());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,

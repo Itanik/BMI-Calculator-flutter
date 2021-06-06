@@ -1,13 +1,13 @@
 import 'package:bmi_calculator_flutter/components/large_button.dart';
 import 'package:bmi_calculator_flutter/pages/cards/counter_card.dart';
 import 'package:bmi_calculator_flutter/pages/cards/slider_card.dart';
+import 'package:bmi_calculator_flutter/utils/bmi_result.dart';
 import 'package:flutter/material.dart';
 
 import '../components/expanded_card.dart';
 import '../constants.dart';
 import 'cards/gender_card.dart';
 import 'results_page.dart';
-
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,6 +18,9 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = kInactiveCardColor;
   Color femaleCardColor = kInactiveCardColor;
 
+  int age = 20;
+  int weight = 75;
+  int height = 180;
   Gender? selectedGender;
 
   @override
@@ -62,7 +65,11 @@ class _InputPageState extends State<InputPage> {
               ],
             )),
             ExpandedCard(
-              child: SliderCard(),
+              child: SliderCard(
+                onChanged: (int value) {
+                  height = value;
+                },
+              ),
               bgColor: kInactiveCardColor,
             ),
             Expanded(
@@ -70,11 +77,21 @@ class _InputPageState extends State<InputPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ExpandedCard(
-                  child: CounterCard(type: CounterType.WEIGHT),
+                  child: CounterCard(
+                    type: CounterType.WEIGHT,
+                    onChanged: (int value) {
+                      weight = value;
+                    },
+                  ),
                   bgColor: kInactiveCardColor,
                 ),
                 ExpandedCard(
-                  child: CounterCard(type: CounterType.AGE),
+                  child: CounterCard(
+                    type: CounterType.AGE,
+                    onChanged: (int value) {
+                      age = value;
+                    },
+                  ),
                   bgColor: kInactiveCardColor,
                 ),
               ],
@@ -82,8 +99,13 @@ class _InputPageState extends State<InputPage> {
             LargeButton(
                 text: "CALCULATE FROM BMI",
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => ResultsPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (builder) =>
+                          ResultsPage(BMIResult(height, weight)),
+                    ),
+                  );
                 })
           ],
         ));

@@ -7,30 +7,31 @@ enum CounterType { WEIGHT, AGE }
 
 class CounterCard extends StatefulWidget {
   final CounterType type;
+  final Function onChanged;
 
-  CounterCard({required this.type});
+  CounterCard({required this.type, required this.onChanged});
 
   @override
-  _CounterCardState createState() {
-    return type == CounterType.WEIGHT
-        ? _CounterCardState(74, "WEIGHT")
-        : _CounterCardState(19, "AGE");
-  }
+  _CounterCardState createState() => _CounterCardState();
 }
 
 class _CounterCardState extends State<CounterCard> {
-  int counterValue;
-  String headlineText;
+  int counterValue = 0;
 
-  _CounterCardState(this.counterValue, this.headlineText);
+  @override
+  void initState() {
+    counterValue = widget.type == CounterType.WEIGHT ? 74 : 19;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    widget.onChanged(counterValue);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          headlineText,
+          widget.type == CounterType.WEIGHT ? "WEIGHT" : "AGE",
           style: kLabelTextStyle,
         ),
         Text(

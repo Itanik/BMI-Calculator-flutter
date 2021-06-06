@@ -1,10 +1,13 @@
 import 'package:bmi_calculator_flutter/components/expanded_card.dart';
 import 'package:bmi_calculator_flutter/components/large_button.dart';
 import 'package:bmi_calculator_flutter/constants.dart';
+import 'package:bmi_calculator_flutter/utils/bmi_result.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
-  final double result = 22.1;
+  final BMIResult bmiResult;
+
+  ResultsPage(this.bmiResult);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -33,14 +36,16 @@ class ResultsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "NORMAL",
+                      bmiResult.result.toString().substring(4),
                       style: kMainTextStyle.copyWith(
-                        color: Colors.greenAccent.shade400,
+                        color: bmiResult.result == BMI.Normal
+                            ? Colors.greenAccent.shade400
+                            : Colors.red,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      result.toString(),
+                      bmiResult.value,
                       style: TextStyle(
                         fontSize: 90.0,
                         fontWeight: FontWeight.w700,
@@ -63,11 +68,7 @@ class ResultsPage extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      result >= 18.5 && result <= 25.0
-                          ? "You have a normal body weight. Good job!"
-                          : result < 18.5
-                              ? "You have a lower than normal body weight. Try eat more"
-                              : "You have a higher than normal body weight. Try to exercise more",
+                      bmiResult.interpretation,
                       style: kMainTextStyle,
                       textAlign: TextAlign.center,
                     ),
