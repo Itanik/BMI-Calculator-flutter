@@ -7,10 +7,19 @@ const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
 );
 const kNumberTextStyle = TextStyle(
-  color: Colors.white,
+  color: kSecondaryTextColor,
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+const kLargeButtonTextStyle = TextStyle(
+  color: kSecondaryTextColor,
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold
+);
+
 const kMainTextColor = Color(0xFF8D8E98);
+const kSecondaryTextColor = Color(0xFFFFFFFF);
 const kAccentColor = Color(0xFFEB1555);
 const kAccentTransparentColor = Color(0x29EB1555);
+const kActiveCardColor = Color(0xFF1D1E33);
+const kInactiveCardColor = Color(0xFF111428);

@@ -1,15 +1,13 @@
-import 'package:bmi_calculator_flutter/constants.dart';
+import 'package:bmi_calculator_flutter/components/large_button.dart';
 import 'package:bmi_calculator_flutter/pages/cards/counter_card.dart';
 import 'package:bmi_calculator_flutter/pages/cards/slider_card.dart';
-import 'package:bmi_calculator_flutter/pages/results_page.dart';
 import 'package:flutter/material.dart';
 
-import 'cards/expanded_card.dart';
+import '../components/expanded_card.dart';
+import '../constants.dart';
 import 'cards/gender_card.dart';
+import 'results_page.dart';
 
-const _kActiveCardColor = Color(0xFF1D1E33);
-const _kInactiveCardColor = Color(0xFF111428);
-const _kBottomContainerHeight = 80.0;
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,8 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = _kInactiveCardColor;
-  Color femaleCardColor = _kInactiveCardColor;
+  Color maleCardColor = kInactiveCardColor;
+  Color femaleCardColor = kInactiveCardColor;
 
   Gender? selectedGender;
 
@@ -37,8 +35,8 @@ class _InputPageState extends State<InputPage> {
               children: [
                 ExpandedCard(
                   bgColor: selectedGender == Gender.MALE
-                      ? _kActiveCardColor
-                      : _kInactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                   child: GenderCard(
                     gender: Gender.MALE,
                     onCardClick: () {
@@ -50,8 +48,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 ExpandedCard(
                   bgColor: selectedGender == Gender.FEMALE
-                      ? _kActiveCardColor
-                      : _kInactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                   child: GenderCard(
                     gender: Gender.FEMALE,
                     onCardClick: () {
@@ -65,7 +63,7 @@ class _InputPageState extends State<InputPage> {
             )),
             ExpandedCard(
               child: SliderCard(),
-              bgColor: _kInactiveCardColor,
+              bgColor: kInactiveCardColor,
             ),
             Expanded(
                 child: Row(
@@ -73,30 +71,20 @@ class _InputPageState extends State<InputPage> {
               children: [
                 ExpandedCard(
                   child: CounterCard(type: CounterType.WEIGHT),
-                  bgColor: _kInactiveCardColor,
+                  bgColor: kInactiveCardColor,
                 ),
                 ExpandedCard(
                   child: CounterCard(type: CounterType.AGE),
-                  bgColor: _kInactiveCardColor,
+                  bgColor: kInactiveCardColor,
                 ),
               ],
             )),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (builder) => ResultsPage()));
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 10.0),
-                height: _kBottomContainerHeight,
-                color: kAccentColor,
-                alignment: Alignment.center,
-                child: Text(
-                  "CALCULATE FROM BMI",
-                  style: TextStyle(fontSize: 18.0),
-                ),
-              ),
-            )
+            LargeButton(
+                text: "CALCULATE FROM BMI",
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => ResultsPage()));
+                })
           ],
         ));
   }
