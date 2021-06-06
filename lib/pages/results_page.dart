@@ -1,7 +1,6 @@
 import 'package:bmi_calculator_flutter/components/expanded_card.dart';
 import 'package:bmi_calculator_flutter/components/large_button.dart';
 import 'package:bmi_calculator_flutter/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
@@ -66,22 +65,13 @@ class ResultsPage extends StatelessWidget {
                     Text(
                       result >= 18.5 && result <= 25.0
                           ? "You have a normal body weight. Good job!"
-                          : "Bad news",
+                          : result < 18.5
+                              ? "You have a lower than normal body weight. Try eat more"
+                              : "You have a higher than normal body weight. Try to exercise more",
                       style: kMainTextStyle,
                       textAlign: TextAlign.center,
                     ),
-                    RawMaterialButton(
-                        fillColor: kInactiveCardColor,
-                        constraints: BoxConstraints.expand(height: 60.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "SAVE RESULT",
-                          style: kMainTextStyle.copyWith(
-                              fontSize: 16.0, letterSpacing: 2),
-                        )),
+                    // buildSaveButton(),
                   ],
                 ),
               )),
@@ -91,5 +81,17 @@ class ResultsPage extends StatelessWidget {
                 Navigator.pop(context);
               })
         ],
+      ));
+
+  Widget buildSaveButton() => RawMaterialButton(
+      fillColor: kInactiveCardColor,
+      constraints: BoxConstraints.expand(height: 60.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      ),
+      onPressed: () {},
+      child: Text(
+        "SAVE RESULT",
+        style: kMainTextStyle.copyWith(fontSize: 16.0, letterSpacing: 2),
       ));
 }
